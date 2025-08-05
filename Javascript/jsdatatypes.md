@@ -8,7 +8,7 @@
  - Strings
  ```js
  "sonu" //double qutoes
- ''sonu'' //single quotes
+ 'sonu' //single quotes
  `sonu` //backticks
  ```
 
