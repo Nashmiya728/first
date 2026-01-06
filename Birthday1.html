@@ -50,13 +50,6 @@ button{
 .b2{background:gold}
 .b3{background:lightgreen}
 .b4{background:skyblue}
-
-.photos img{
-  width:200px;
-  border-radius:15px;
-  display:none;
-}
-.photos img.active{display:block}
 </style>
 </head>
 
@@ -126,17 +119,6 @@ function pop(el,text){
       setTimeout(()=>next('photos'),1000);
   }
 }
-
-let p=0;
-function nextPhoto(){
-  let imgs=document.querySelectorAll('.photos img');
-  imgs[p].classList.remove('active');
-  p++;
-  if(p<imgs.length){
-    imgs[p].classList.add('active');
-  }else{
-    next('final');
-  }
 }
 </script>
 
