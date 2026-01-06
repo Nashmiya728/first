@@ -85,9 +85,9 @@ button{
   <p id="msg"></p>
 </div>
 
-<!-- 5 FINAL MESSAGE -->
+<!-- 5️⃣ FINAL MESSAGE -->
 <div class="screen" id="final">
-  <h1 class="glow">🎉 I dont count candles ,I count moments and one of my favourite moment is you 😊 <br>Happy Birthday 🎂</h1>
+  <h1 class="glow">🎉 I don’t count candles, I count moments and one of my favourite moments is you 😊 <br>Happy Birthday 🎂</h1>
   <h2>You deserve great things. May this year surprise you in the best way 🪄 🎉</h2>
 </div>
 
@@ -96,13 +96,13 @@ function next(id){
   document.querySelector('.active').classList.remove('active');
   document.getElementById(id).classList.add('active');
 
-  if(id==='countdown'){
-    let c=3;
-    let el=document.getElementById('count');
-    let timer=setInterval(()=>{
+  if(id === 'countdown'){
+    let c = 3;
+    let el = document.getElementById('count');
+    let timer = setInterval(()=>{
       c--;
-      el.innerText=c;
-      if(c==0){
+      el.innerText = c;
+      if(c === 0){
         clearInterval(timer);
         next('cake');
       }
@@ -110,15 +110,15 @@ function next(id){
   }
 }
 
-function pop(el,text){
-  el.style.visibility='hidden';
-  document.getElementById('msg').innerText=text;
+function pop(el, text){
+  el.style.visibility = 'hidden';
+  document.getElementById('msg').innerText = text;
 
+  // After all balloons are popped, go to final screen
   if([...document.querySelectorAll('.balloon')]
-     .every(b=>b.style.visibility==='hidden')){
-      setTimeout(()=>next('photos'),1000);
+     .every(b => b.style.visibility === 'hidden')){
+    setTimeout(() => next('final'), 1000);
   }
-}
 }
 </script>
 
