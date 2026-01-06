@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Birthday Surprise 🎉</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{
+  background:#000;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  text-align:center;
+}
+.screen{display:none;flex-direction:column;align-items:center;gap:20px}
+.active{display:flex}
+
+.glow{
+  color:#c77dff;
+  text-shadow:0 0 10px #c77dff,0 0 20px #ff4dff;
+}
+
+button{
+  background:#ff2d75;
+  border:none;
+  padding:12px 24px;
+  border-radius:25px;
+  color:#fff;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.count{font-size:80px}
+
+.cake{font-size:80px}
+
+.balloon{
+  width:60px;height:80px;
+  border-radius:50%;
+  margin:10px;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+}
+.b1{background:pink}
+.b2{background:gold}
+.b3{background:lightgreen}
+.b4{background:skyblue}
+
+.photos img{
+  width:200px;
+  border-radius:15px;
+  display:none;
+}
+.photos img.active{display:block}
+</style>
+</head>
+
+<body>
+
+<!-- 1️⃣ INTRO -->
+<div class="screen active" id="intro">
+  <h1 class="glow">POV:</h1>
+  <h2 class="glow">You just made someone's birthday<br>a little more special 🎉</h2>
+  <button onclick="next('countdown')">Start</button>
+</div>
+
+<!-- 2️⃣ COUNTDOWN -->
+<div class="screen" id="countdown">
+  <div class="count glow" id="count">3</div>
+</div>
+
+<!-- 3️⃣ CAKE CLICK -->
+<div class="screen" id="cake">
+  <div class="cake">🎂</div>
+  <button onclick="next('balloons')">Decorate Cake</button>
+</div>
+
+<!-- 4️⃣ BALLOONS -->
+<div class="screen" id="balloons">
+  <h2 class="glow">Pop all balloons 🎈</h2>
+  <div>
+    <div class="balloon b1" onclick="pop(this,'You are very nice 💖')"></div>
+    <div class="balloon b2" onclick="pop(this,'You are special ✨')"></div>
+    <div class="balloon b3" onclick="pop(this,'You make me smile 😊')"></div>
+    <div class="balloon b4" onclick="pop(this,'Stay happy always 🌈')"></div>
+  </div>
+  <p id="msg"></p>
+</div>
+
+<!-- 5️⃣ PHOTOS -->
+<div class="screen" id="photos">
+  <h2 class="glow">Some Sweet Moments 💕</h2>
+  <div class="photos">
+    <img src="photo1.jpg" class="active">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+  </div>
+  <button onclick="nextPhoto()">Next</button>
+</div>
+
+<!-- 6️⃣ FINAL MESSAGE -->
+<div class="screen" id="final">
+  <h1 class="glow">🎉 Happy Birthday 🎂</h1>
+  <h2>May all your dreams come true 💖</h2>
+</div>
+
+<script>
+function next(id){
+  document.querySelector('.active').classList.remove('active');
+  document.getElementById(id).classList.add('active');
+
+  if(id==='countdown'){
+    let c=3;
+    let el=document.getElementById('count');
+    let timer=setInterval(()=>{
+      c--;
+      el.innerText=c;
+      if(c==0){
+        clearInterval(timer);
+        next('cake');
+      }
+    },1000);
+  }
+}
+
+function pop(el,text){
+  el.style.visibility='hidden';
+  document.getElementById('msg').innerText=text;
+
+  if([...document.querySelectorAll('.balloon')]
+     .every(b=>b.style.visibility==='hidden')){
+      setTimeout(()=>next('photos'),1000);
+  }
+}
+
+let p=0;
+function nextPhoto(){
+  let imgs=document.querySelectorAll('.photos img');
+  imgs[p].classList.remove('active');
+  p++;
+  if(p<imgs.length){
+    imgs[p].classList.add('active');
+  }else{
+    next('final');
+  }
+}
+</script>
+
+</body>
+  </html>
